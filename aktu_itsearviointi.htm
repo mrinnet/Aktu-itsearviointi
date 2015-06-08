@@ -357,7 +357,7 @@ $sendEmail = function(){
           //emailBody += "-\t"+question.questionText.substr(0,30)+"...\n";
           false;
         else
-          emailBody += question.questionResponce+"\t"+question.questionText.substr(0,25)+"...\n";
+          emailBody += question.questionResponce+"\t"+question.questionText.substr(0,8)+"..."+question.questionText.substr(question.questionText.length-8,question.questionText.length-1)+"\n";
 
       });
       emailBody += "\n";
