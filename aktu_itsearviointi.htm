@@ -104,37 +104,38 @@
         </div>
         <div class="modal-body">
           <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Organisaationne koko</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Henkilöstömäärä">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus nunc eros, a malesuada metus consectetur ut. Aenean tincidunt turpis lorem, nec pulvinar ipsum hendrerit in. Cras lobortis nibh pellentesque tortor dapibus, id laoreet massa tempor. Donec at eros in lacus aliquam luctus vel id nisl. Duis rhoncus ante vel magna blandit viverra. Maecenas efficitur consectetur nisi vel mollis. Praesent pellentesque nibh at augue porttitor scelerisque. Morbi vel massa at magna vulputate suscipit.</p>
+          
+          <br>
+          <div class="controls form-inline">
+            <label for="inputKey">Organisaationne koko</label>
+            <input type="text" class="input-medium form-control" id="taustatieto_henkilosto" placeholder="Henkilöstömäärä">
+          </div>
+          
+          <br>
+          <div class="form-group">
+            <p><strong>Mitä työnantajatyyppiä organisaationne edustaa</strong></p>
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default"><input type="radio" id="taustatieto_kunta"  name="taustatieto_tyyppi" value="kunta-ala" /> Kunta-ala * </label> 
+              <label class="btn btn-default"><input type="radio" id="taustatieto_valtio" name="taustatieto_tyyppi" value="valtio" /> Valtio </label> 
+              <label class="btn btn-default"><input type="radio" id="taustatieto_kirkko" name="taustatieto_tyyppi" value="kirkko" /> Kirkko </label> 
+              <label class="btn btn-default"><input type="radio" id="taustatieto_oy"     name="taustatieto_tyyppi" value="osakeyhtio" /> Osakeyhtiö </label> 
+              <label class="btn btn-default"><input type="radio" id="taustatieto_muu"    name="taustatieto_tyyppi" value="muu" /> Muu </label>
             </div>
-            <p>Mitä työnantajatyyppiä organisaationne edustaa</p>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Kunta-ala (kunnat, kaupungit, kuntayhtymät)
-              </label>
+            <p>* kunta-alaksi luetaan kunnat, kaupungit, kuntayhtymät</p>              
+          </div>
+          
+          <br>
+          <div class="form-group">
+            <p><strong>Oletko aikaisemmin jo vastannut tähän kyselyyn ja tallentanut tulokset Kevan palvelimelle?</strong></p>
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default"><input type="radio" id="taustatieto_aikvast1" name="taustatieto_aikvast" value="true"  /> Kyllä </label> 
+              <label class="btn btn-default"><input type="radio" id="taustatieto_aikvast2" name="taustatieto_aikvast" value="false" /> Ei </label> 
             </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Valtio
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option3"> Kirkko
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option4"> Osakeyhtiö
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option5"> Muu
-              </label>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+          <br><br>
+            <button type="button" class="btn btn-success" id="tallenna-tulokset-palvelimelle-submit"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Tallenna</button>
+
           </form>
         </div>
       </div>
@@ -143,7 +144,7 @@
   
 
   <p> </p>
- <!-- temp 10 -->
+
 <p> </p>
 
 
@@ -325,7 +326,7 @@ var kysely =
   }, {
     "sectionHeader": "Työterveysyhteistyö aktiivisen tuen toimintatavassa",
     "sectionId": "tthcoop",
-    "sectionResponceScale": [0,1,2,4],
+    "sectionResponceScale": [0,1,2],
     "sectionResponceInfo": "ei 0, osittain 1, huomioitu 2",
     "sectionResponceScaleInfo": "Arvio (0-2)",
     "parts": [
@@ -374,8 +375,9 @@ $resultsToolbar = $("div#tulokset-button-toolbar");
 $editButton = $("button#muokkaa-vastauksia");
 $printButton = $("button#tulostaa-tulokset");
 $saveResultsButton = $("button#tallenna-tulokset-palvelimelle");
+$saveResultsSubmitButton = $("button#tallenna-tulokset-palvelimelle-submit");
 $sendToExpert = $("button#laheta-asiantuntijalle");
-//$fader = $("div#fader");
+
 
 $printResults = function(){
   if($resultsContainer.css('display')=='block')
@@ -417,8 +419,12 @@ $sendEmail = function(){
   window.location = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(emailBody);
 }
 
+$showModal = function(){
+  $("#myModal").modal('show');
+}
+
 $sendResultsToServer = function(){
-  //$fader.show();
+  
   $activeResponces = $("div.btn-group.btn-group-xs .active");
   var resultsToSave = new Object;
   //console.log($activeResponces);
@@ -427,7 +433,15 @@ $sendResultsToServer = function(){
     //console.log(par_ids);
     resultsToSave[par_ids[0]+"-"+par_ids[1]+"-"+par_ids[2]] = par_ids[3].substr(1,2);
   });
-  //console.log(resultsToSave);
+  
+  resultsToSave["taustatieto_tyyppi"]     = typeof $('input[name=taustatieto_tyyppi]:checked').val() !== 'undefined'  ? $('input[name=taustatieto_tyyppi]:checked').val() : null;
+  resultsToSave["taustatieto_henkilosto"] = $('#taustatieto_henkilosto').val() != ''                                  ? $('#taustatieto_henkilosto').val() : null;
+  resultsToSave["taustatieto_aikvast"]    = typeof $('input[name=taustatieto_aikvast]:checked').val() !== 'undefined' ? $('input[name=taustatieto_aikvast]:checked').val() : null;
+  
+  text = typeof text !== 'undefined' ? text : 'pisteet';
+  
+  console.log(resultsToSave);
+  
   
   $.ajax({
     url: "http://url",
@@ -440,7 +454,6 @@ $sendResultsToServer = function(){
       window.resultsToSave = resultsToSave;
       console.log(JSON.stringify(resultsToSave));
       alert("Tiedot onnistuneesti tallennettu!");
-      //$fader.hide();
     },
     error: function(xhr, ajaxOptions, thrownError) {
       //On error do this
@@ -449,9 +462,8 @@ $sendResultsToServer = function(){
       console.log(ajaxOptions);
       console.log(thrownError);
       console.log(JSON.stringify(resultsToSave));
-      //alert("Tietojen lähetys epäonnistui!");
-      $("#myModal").modal('show');
-      //$fader.hide();
+      alert("Tietojen lähetys epäonnistui!");
+      
       /*if (xhr.status == 200) {
         
         alert(ajaxOptions);
@@ -544,6 +556,11 @@ $createResults = function() {
   $yhteenVetoContainer.append(
           $("<div>", {class:"page-header"}).append(
               $("<h2>",{text: "Yhteenveto"})));
+  $yhteenVetoContainer
+        .append($("<div>", {class:"col-md-12"})
+            .append($("<div>", {class:"progress", id:"progressbar-kokonaispisteet"})
+              .append($("<div>",{id:"results-progressbar-kokonaispisteet-bar", class:"progress-bar"})))
+        );
 
   $resultsContainer.append(
           $("<div>", {class:"page-header"}).append(
@@ -575,7 +592,7 @@ $createResults = function() {
             .append($("<span>",{class:"small text-right",id:"results-"+section.sectionId+"-"+part.partId+"-vastausmaarapisteet"}).css("font-style","italic")))
           .append($("<div>", {class:"col-md-8"})
             .append($("<div>", {class:"progress", id:"progressbar-"+section.sectionId+"-"+part.partId})
-              .append($("<div>",{id:"results-"+section.sectionId+"-"+part.partId+"-pisteet", class:"progress-bar progress-bar-success"}))))
+              .append($("<div>",{id:"results-"+section.sectionId+"-"+part.partId+"-pisteet", class:"progress-bar"}))))
         );
 
 
@@ -588,9 +605,31 @@ $createResults = function() {
   $sectionContainer.append($("<p>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='www.keva.fi/kaari'>www.keva.fi/kaari</a>.", class:"text-center"}))
 }
 
+$updateProgressBarColorWidth = function(obj_id, points, max_points, text){
+  var bar_class = "";
+  var percentage = Math.round(10000*points/max_points)/100;
+  text = typeof text !== 'undefined' ? text : 'pisteet';
+  
+  if(Math.round(percentage) < 33)      {bar_class="progress-bar-danger"}
+  else if(Math.round(percentage) < 66) {bar_class="progress-bar-warning"}
+  else                                 {bar_class="progress-bar-success"}
+  
+  $obj = $("#"+obj_id);
+  $obj  .removeClass("progress-bar-danger progress-bar-warning progress-bar-success")
+        .addClass(bar_class)
+        .css("width", percentage+"%")
+        .text(text+":"+points+"/"+max_points)
+  
+  if(percentage==0){$obj.css("color", "black")}
+  else             {$obj.css("color", "white")}
+  
+}
+
 $updateResults = function() {
+  var kokonais_pisteet = 0;
+  var kokonais_max_pisteet = 0;
   $.each(kysely, function(i, section) {
-    
+      
     $.each(section.parts, function(j, part) {
       var pisteet = 0;
       var vastausmaara = 0;
@@ -608,6 +647,7 @@ $updateResults = function() {
           if(question.questionResponce<min_pisteet || min_pisteet==undefined) min_pisteet = question.questionResponce;
         }
       });
+      kokonais_pisteet += pisteet;
       
       if(min_pisteet != undefined && min_pisteet != max_pisteet) {
         $poimitutkysymykset.append($("<p>",{html:"Vastasit "+min_pisteet+" seuraaviin väittämiin: "}));
@@ -621,25 +661,30 @@ $updateResults = function() {
         if(min_pisteet == undefined)
           $poimitutkysymykset.append($("<p>",{text:"Vastasit 0 väittämään"}));
         if(min_pisteet == max_pisteet)
-          $poimitutkysymykset.append($("<p>",{text:"Vastasit kaikkiin väittämiin "+max_pisteet+", eli asiaa toteutuu kattavasti."}));
+          $poimitutkysymykset.append($("<p>",{text:"Vastasit kaikkiin väittämiin "+max_pisteet+", eli asia toteutuu kattavasti."}));
       }
       
       var maxpisteet = (part.questions.length*Math.max.apply(Math, section.sectionResponceScale))
       var pisteprosentti = Math.round(10000*pisteet/maxpisteet)/100;
+      kokonais_max_pisteet += maxpisteet;
 
-      //$("#results2-"+section.sectionId+"-"+part.partId+"-vastausmaarapisteet").html("Vastasit "+vastausmaara+"/"+part.questions.length+" kysymykseen. Sait "+pisteet+"/"+maxpisteet+" pistettä.");
       $("#results-"+section.sectionId+"-"+part.partId+"-vastausmaarapisteet").html("vastaukset "+vastausmaara+"/"+part.questions.length);
       
-      /*$("#results2-"+section.sectionId+"-"+part.partId+"-pisteet")
-        .css("width", pisteprosentti+"%")
-        .text("pisteesi");*/
-      $("#results-"+section.sectionId+"-"+part.partId+"-pisteet")
-        .css("width", pisteprosentti+"%")
-        .text("pisteet "+pisteet+"/"+maxpisteet);
+      $updateProgressBarColorWidth("results-"+section.sectionId+"-"+part.partId+"-pisteet", pisteet, maxpisteet)
+
+      //$("#results-"+section.sectionId+"-"+part.partId+"-pisteet")
+      //  .css("width", pisteprosentti+"%")
+      //  .text("pisteet:"+pisteet+"/"+maxpisteet);
+      
+      //if(pisteet==0){$("#results-"+section.sectionId+"-"+part.partId+"-pisteet").css("color", "black")}
+      //else          {$("#results-"+section.sectionId+"-"+part.partId+"-pisteet").css("color", "white")}
+        
     });
-
+    
   });
-
+  var kokonaispisteprosentti = Math.round(10000*kokonais_pisteet/kokonais_max_pisteet)/100;
+  
+  $updateProgressBarColorWidth("results-progressbar-kokonaispisteet-bar", kokonais_pisteet, kokonais_max_pisteet, "kokonaispisteet")
 }
 
 
@@ -676,7 +721,8 @@ $( document ).ready(function() {
   
   $editButton.click($switchQandR);
   $printButton.click($printResults);
-  $saveResultsButton.click($sendResultsToServer);
+  $saveResultsButton.click($showModal);
+  $saveResultsSubmitButton.click($sendResultsToServer);
   $sendToExpert.click($sendEmail);
   $resultsToolbar.hide();
   
@@ -705,8 +751,20 @@ $( document ).ready(function() {
     display: block !important;
     background-color: #5cb85c !important;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5cb85c', endColorstr='#449d44 ')" !important;
+    color: #ffffff !important;
   }
-
+  .progress-bar-warning{
+    display: block !important;
+    background-color: #f0ad4e !important;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f0ad4e', endColorstr='#ec971f ')" !important;
+    color: #ffffff !important;
+  }
+ .progress-bar-danger{
+    display: block !important;
+    background-color: #d9534f !important;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#d9534f', endColorstr='#c9302c ')" !important;
+    color: #ffffff !important;
+  }
   .progress, .progress > .progress-bar {
     display: block !important;
     -webkit-print-color-adjust: exact !important;
