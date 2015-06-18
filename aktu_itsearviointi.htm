@@ -63,7 +63,7 @@
     <p>Kullakin organisaatiolla on oma toimintatapansa johtaa työhyvinvointia ja työkykyä. Organisaatiot kutsuvat omia toimintatapojaan tai mallejaan eri nimillä. Keva käyttää nimitystä Aktiivisen tuen toimintatapa. Siihen sisältyy varhainen tuki, tehostettu tuki ja paluun tuki sekä työterveysyhteistyö.</p>
     <p>
       Arvioi seuraavia väittämiä. Vastausvaihtoehdot ovat:  
-      <ul>
+      <ul style="list-style-type: none;">
         <li>0 = asia ei toteudu</li>
         <li>1 = asia toteutuu osittain</li>
         <li>2 = asia toteutuu kattavasti</li>
@@ -127,12 +127,22 @@
           
           <br>
           <div class="form-group">
+            <p><strong>Missä organisaationne eläkevakuutus on järjestetty?</strong></p>
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default"><input type="radio" id="taustatieto_elakeyht1" name="taustatieto_elakeyht" value="keva"  /> Kevassa </label> 
+              <label class="btn btn-default"><input type="radio" id="taustatieto_elakeyht2" name="taustatieto_elakeyht" value="muu" /> Muualla </label> 
+            </div>
+          </div>
+          
+          <br>
+          <div class="form-group">
             <p><strong>Oletko aikaisemmin jo vastannut tähän kyselyyn ja tallentanut tulokset Kevan palvelimelle?</strong></p>
             <div class="btn-group" data-toggle="buttons">
               <label class="btn btn-default"><input type="radio" id="taustatieto_aikvast1" name="taustatieto_aikvast" value="true"  /> Kyllä </label> 
               <label class="btn btn-default"><input type="radio" id="taustatieto_aikvast2" name="taustatieto_aikvast" value="false" /> Ei </label> 
             </div>
           </div>
+          
           <br><br>
             <button type="button" class="btn btn-success" id="tallenna-tulokset-palvelimelle-submit"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Tallenna</button>
 
@@ -293,7 +303,7 @@ var kysely =
             "questionText" : "Aktiivisen tuen toimivuudelle on asetettu selkeät muutostavoitteet (koskien esim. työilmapiirin parantamista, henkilöstön työhyvinvoinnin parantamista, sairauspoissaolojen vähentämistä, työkyvyttömyyseläkkeiden vähentämistä)"
           }, {
             "questionId" : 2,
-            "questionText" : "Tavoitteiden toteutumista/ muutosta aikaisempaan tilanteeseen arvioidaan selkein mittarein"
+            "questionText" : "Tavoitteiden toteutumista/muutosta aikaisempaan tilanteeseen arvioidaan selkein mittarein"
           }, {
             "questionId" : 3,
             "questionText" : "Eri johtamisen tasoille on määritelty omat seurattavat mittarit (työyksikkötaso, toimialataso, organisaatiotaso)"
@@ -305,10 +315,10 @@ var kysely =
             "questionText" : "Henkilöstön tilaa ja henkilöstömuutoksia ennakoidaan säännöllisesti ja ryhdytään tarvittaviin toimenpiteisiin"
           }, {
             "questionId" : 6,
-            "questionText" : "Aktiivien tuen toimintatavan kokonaisvastuu on määritetty jollekin taholle"
+            "questionText" : "Aktiivien tuen toimintatavan kokonaisvastuu on määritetty tietylle taholle"
           }, {
             "questionId" : 7,
-            "questionText" : "Työkyvyttömyyskustannusten seuranta on vastuutettu jollekin taholle ja tietoja analysoidaan säännöllisesti ja ryhdytään sovittuihin toimenpiteisiin"
+            "questionText" : "Työkyvyttömyyskustannusten seuranta on vastuutettu tietylle taholle ja tietoja analysoidaan säännöllisesti ja ryhdytään sovittuihin toimenpiteisiin"
           }, {
             "questionId" : 8,
             "questionText" : "Aktiivisen tuen seurantaan on sähköinen järjestelmä, joka edellyttää esimieheltä reagointia"
@@ -437,8 +447,7 @@ $sendResultsToServer = function(){
   resultsToSave["taustatieto_tyyppi"]     = typeof $('input[name=taustatieto_tyyppi]:checked').val() !== 'undefined'  ? $('input[name=taustatieto_tyyppi]:checked').val() : null;
   resultsToSave["taustatieto_henkilosto"] = $('#taustatieto_henkilosto').val() != ''                                  ? $('#taustatieto_henkilosto').val() : null;
   resultsToSave["taustatieto_aikvast"]    = typeof $('input[name=taustatieto_aikvast]:checked').val() !== 'undefined' ? $('input[name=taustatieto_aikvast]:checked').val() : null;
-  
-  text = typeof text !== 'undefined' ? text : 'pisteet';
+  resultsToSave["taustatieto_elakeyht"]   = typeof $('input[name=taustatieto_elakeyht]:checked').val() !== 'undefined'? $('input[name=taustatieto_elakeyht]:checked').val() : null;
   
   console.log(resultsToSave);
   
@@ -602,7 +611,7 @@ $createResults = function() {
     $sectionContainer.appendTo($resultsContainer);
   });
 
-  $sectionContainer.append($("<p>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>.", class:"text-center"}))
+  $sectionContainer.append($("<h4>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
 }
 
 $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
