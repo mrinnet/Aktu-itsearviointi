@@ -61,11 +61,8 @@
   </div>
   
   <div id="page-info">
-	<p>Aktiivisen tuen toimintapa tukee työkyvyn ja työhyvinvoinnin johtamista organisaatioissa. Toimintatapa sisältää varhaisen, tehostetun ja paluun tuen toimintamallit sekä niihin sisältyvän yhteistyön työterveyshuollon kanssa. </p>
-
-	<p>Arvioi organisaatiosi tilanne aktiivisen tuen toimintatavan itsearviointityökalulla. Pisteytä väittämät ja vertaa tulosta kokonaispisteisiin. Pisteet ovat </p>
-
-	<p>2 = asia toteutuu kattavasti, 1 = asia toteutuu osittain, 0 = asia ei toteudu.</p>
+	<p>Aktiivisen tuen toimintatapa tukee työhyvinvoinnin ja työkyvyn johtamista. Siihen sisältyy varhainen tuki, tehostettu tuki ja paluun tuki sekä työterveysyhteistyö. Miten hyvin toimintatapa toteutuu organisaatiossasi? Arvioi tilanne itsearviointityökalulla. Saat helposti selville kehittämiskohteet ja vahvuudet – ja voit tehdä konkreettisia suunnitelmia toimintatavan kehittämiseksi.</p>
+	<p>Ohje: Aloita arviointi ja klikkaa väittämään sopivaa pistemäärää. Pisteet ovat 0 (ei toteudu), 1 (toteutuu osittain) tai 2 (toteutuu kattavasti). Lopuksi, klikkaa ”katso tuloksia”. Tulossivu sisältää yhteenvedon, jossa on kokonaispisteet ja vastausten lukumäärä sekä väittämiä, joihin kannattaa kiinnittää huomiota. Voit palata tulossivulta uudelleenarviointiin tai tulostaa yhteenvedon tai tallentaa sen pdf-muodossa. Voit myös lähettää yhteenvedon Kevan asiantuntijalle yhteydenottoa varten.</p>
   </div>
 
   <div id="questionnaire">Ladataan...</div>
@@ -286,7 +283,7 @@ var kysely =
           } ]
       } ]
   }, {
-    "sectionHeader": "Aktiivisen tuen toimintatavan johtaminen",
+    "sectionHeader": "Toimintatavan johtaminen",
     "sectionId": "aktujohto",
     "sectionResponceScale": [0,1,2],
     "sectionResponceInfo": "0 ei toteudu, 1 toteutuu osittain, 2 toteutuu kattavasti",
@@ -333,7 +330,7 @@ var kysely =
           } ]
       } ]
   }, {
-    "sectionHeader": "Työterveysyhteistyö aktiivisen tuen toimintatavassa",
+    "sectionHeader": "Työterveysyhteistyö",
     "sectionId": "tthcoop",
     "sectionResponceScale": [0,1,2],
     "sectionResponceInfo": "0 ei toteudu, 1 toteutuu osittain, 2 toteutuu kattavasti",
@@ -610,7 +607,7 @@ $createResults = function() {
     $sectionContainer.appendTo($resultsContainer);
   });
 
-  $sectionContainer.append($("<h4>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
+  $sectionContainer.append($("<strong>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
 }
 
 $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
