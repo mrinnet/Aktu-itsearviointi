@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fi">
 <head>
@@ -19,9 +20,9 @@
 
 <div class="container theme-showcase" role="main">
 
-  <div id="logo-holder">
+  <div id="logo-holder" style="height:1in;text-align:left;">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-   width="100%" viewBox="0 0 810.925 152.47" enable-background="new 0 0 810.925 152.47"
+   height="1in" viewBox="0 0 810.925 152.47" enable-background="new 0 0 810.925 152.47" preserveAspectRatio="xMinYMid"	
 	 xml:space="preserve">
       <g>
       	<path fill="#8DC63F" d="M0,152.47V0h466.456c0,84.207-72.566,152.47-156.773,152.47h4.303H0z"/>
@@ -60,6 +61,7 @@
   </div>
   
   <div id="page-info">
+<<<<<<< HEAD
     <p>Kullakin organisaatiolla on oma toimintatapansa johtaa työhyvinvointia ja työkykyä. Organisaatiot kutsuvat omia toimintatapojaan tai mallejaan eri nimillä. Keva käyttää nimitystä Aktiivisen tuen toimintatapa. Siihen sisältyy varhainen tuki, tehostettu tuki ja paluun tuki sekä työterveysyhteistyö.</p>
     <p>
       Arvioi seuraavia väittämiä. Vastausvaihtoehdot ovat:  
@@ -69,6 +71,10 @@
         <li>2 = asia toteutuu kattavasti</li>
       </ul>
     </p>
+=======
+	<p>Aktiivisen tuen toimintatapa tukee työhyvinvoinnin ja työkyvyn johtamista. Siihen sisältyy varhainen tuki, tehostettu tuki ja paluun tuki sekä työterveysyhteistyö. Miten hyvin toimintatapa toteutuu organisaatiossasi? Arvioi tilanne itsearviointityökalulla. Saat helposti selville kehittämiskohteet ja vahvuudet – ja voit tehdä konkreettisia suunnitelmia toimintatavan kehittämiseksi.</p>
+	<p>Ohje: Aloita arviointi ja klikkaa väittämään sopivaa pistemäärää. Pisteet ovat 0 (ei toteudu), 1 (toteutuu osittain) tai 2 (toteutuu kattavasti). Lopuksi, klikkaa ”katso tuloksia”. Tulossivu sisältää yhteenvedon, jossa on kokonaispisteet ja vastausten lukumäärä sekä väittämiä, joihin kannattaa kiinnittää huomiota. Voit palata tulossivulta uudelleenarviointiin tai tulostaa yhteenvedon tai tallentaa sen pdf-muodossa. Voit myös lähettää yhteenvedon Kevan asiantuntijalle yhteydenottoa varten.</p>
+>>>>>>> master
   </div>
 
   <div id="questionnaire">Ladataan...</div>
@@ -87,9 +93,11 @@
     <button type="button" class="btn btn-default" id="laheta-asiantuntijalle">
       <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Lähetä asiantuntijalle
     </button>
-    <button type="button" class="btn btn-default" id="tallenna-tulokset-palvelimelle">
+    <!--
+	<button type="button" class="btn btn-default" id="tallenna-tulokset-palvelimelle">
       <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Tallenna Kevan palvelimelle
     </button>
+	-->
   </div>
   <div id="results">Ladataan...</div>
   
@@ -187,6 +195,9 @@ var kysely =
           }, {
             "questionId" : 4,
             "questionText" : "Esimiehet tunnistavat varhaisen tuen tarpeita jo ennen poissaolohälytyksiä (kun huoli herää)"
+          }, {
+            "questionId" : 5,
+            "questionText" : "Korvaavan työn malli on käytössä"
           } ]
       },{
         "partDefinition": "<strong>Tehostetulla tuella tarkoitetaan</strong> toimia, joilla työssä jatkamista tuetaan, kun työntekijän työkyky on jo heikentynyt tai kun työyhteisössä on jo ongelmia. Tehostettuun tukeen siirrytään kun esimiehen omat toimet eivät enää riitä, vaan hän tarvitsee yhteistyökumppaneita.",
@@ -268,26 +279,29 @@ var kysely =
             "questionText" : "Esimiehet käyttävät toimintatapaa aktiivisesti ja oikea-aikaisesti"
           }, {
             "questionId" : 2,
-            "questionText" : "Henkilöstö ymmärtää toimintatavan merkityksen"
+            "questionText" : "Toiminnan kaikissa vaiheissa tarkastellaan sekä terveyttä että työtä ja sen sujuvuuden parantamista"
           }, {
             "questionId" : 3,
-            "questionText" : "Henkilöstö käyttää toimintatapaa aktiivisesti"
+            "questionText" : "Henkilöstö ymmärtää toimintatavan merkityksen"
           }, {
             "questionId" : 4,
-            "questionText" : "Toimintatapa on osa uuden työntekijän ja esimiehen perehdytysohjelmaa"
+            "questionText" : "Henkilöstö käyttää toimintatapaa aktiivisesti"
           }, {
             "questionId" : 5,
-            "questionText" : "Toimintatapaa päivitetään aina tarvittaessa"
+            "questionText" : "Toimintatapa on osa uuden työntekijän ja esimiehen perehdytysohjelmaa"
           }, {
             "questionId" : 6,
-            "questionText" : "Toimintatapaa päivitetään laaja-alaisessa yhteistyössä keskeisten toimijoiden kanssa"
+            "questionText" : "Toimintatapaa päivitetään aina tarvittaessa"
           }, {
             "questionId" : 7,
+            "questionText" : "Toimintatapaa päivitetään laaja-alaisessa yhteistyössä keskeisten toimijoiden kanssa"
+          }, {
+            "questionId" : 8,
             "questionText" : "Työterveyshuolto toimii aktiivisesti toimintatavan juurruttamisessa"
           } ]
       } ]
   }, {
-    "sectionHeader": "Aktiivisen tuen toimintatavan johtaminen",
+    "sectionHeader": "Toimintatavan johtaminen",
     "sectionId": "aktujohto",
     "sectionResponceScale": [0,1,2],
     "sectionResponceInfo": "0 ei toteudu, 1 toteutuu osittain, 2 toteutuu kattavasti",
@@ -334,10 +348,14 @@ var kysely =
           } ]
       } ]
   }, {
-    "sectionHeader": "Työterveysyhteistyö aktiivisen tuen toimintatavassa",
+    "sectionHeader": "Työterveysyhteistyö",
     "sectionId": "tthcoop",
     "sectionResponceScale": [0,1,2],
+<<<<<<< HEAD
     "sectionResponceInfo": "ei 0, osittain 1, huomioitu 2",
+=======
+    "sectionResponceInfo": "0 ei toteudu, 1 toteutuu osittain, 2 toteutuu kattavasti",
+>>>>>>> master
     "sectionResponceScaleInfo": "Arvio (0-2)",
     "parts": [
       {
@@ -402,7 +420,7 @@ $sendEmail = function(){
   var emailBody = 'Kirjoita oma viestisi, yhteystietosi ja mahdolliset kysymyksesi tämän viivan yläpuolelle\n-------------------------------------------------------------------------\n\n';
   
   $.each(kysely, function(i, section) {
-    emailBody += section.sectionHeader+"\n\n";
+    emailBody += section.sectionHeader+"\n";
     
     $.each(section.parts, function(j, part) {
       emailBody += part.partHeader+"\n";
@@ -421,7 +439,7 @@ $sendEmail = function(){
       emailBody += "\n";
       
     });
-    emailBody += "\n";
+    //emailBody += "\n";
   });
   
   console.log(emailBody);
@@ -611,7 +629,11 @@ $createResults = function() {
     $sectionContainer.appendTo($resultsContainer);
   });
 
+<<<<<<< HEAD
   $sectionContainer.append($("<h4>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
+=======
+  $sectionContainer.append($("<strong>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
+>>>>>>> master
 }
 
 $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
@@ -627,10 +649,18 @@ $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
   $obj  .removeClass("progress-bar-danger progress-bar-warning progress-bar-success")
         .addClass(bar_class)
         .css("width", percentage+"%")
+<<<<<<< HEAD
         .text(text+":"+points+"/"+max_points)
   
   if(percentage==0){$obj.css("color", "black")}
   else             {$obj.css("color", "white")}
+=======
+		.css("text-align","left")
+        .text(" "+text+":"+points+"/"+max_points)
+  
+  if(percentage==0){$obj.css("color", "black")}
+  else             {$obj.css("color", "black")}
+>>>>>>> master
   
 }
 
@@ -683,6 +713,10 @@ $updateResults = function() {
 
       //$("#results-"+section.sectionId+"-"+part.partId+"-pisteet")
       //  .css("width", pisteprosentti+"%")
+<<<<<<< HEAD
+=======
+	  //  .css("text-align","left")
+>>>>>>> master
       //  .text("pisteet:"+pisteet+"/"+maxpisteet);
       
       //if(pisteet==0){$("#results-"+section.sectionId+"-"+part.partId+"-pisteet").css("color", "black")}
