@@ -61,20 +61,8 @@
   </div>
   
   <div id="page-info">
-<<<<<<< HEAD
-    <p>Kullakin organisaatiolla on oma toimintatapansa johtaa työhyvinvointia ja työkykyä. Organisaatiot kutsuvat omia toimintatapojaan tai mallejaan eri nimillä. Keva käyttää nimitystä Aktiivisen tuen toimintatapa. Siihen sisältyy varhainen tuki, tehostettu tuki ja paluun tuki sekä työterveysyhteistyö.</p>
-    <p>
-      Arvioi seuraavia väittämiä. Vastausvaihtoehdot ovat:  
-      <ul style="list-style-type: none;">
-        <li>0 = asia ei toteudu</li>
-        <li>1 = asia toteutuu osittain</li>
-        <li>2 = asia toteutuu kattavasti</li>
-      </ul>
-    </p>
-=======
 	<p>Aktiivisen tuen toimintatapa tukee työhyvinvoinnin ja työkyvyn johtamista. Siihen sisältyy varhainen tuki, tehostettu tuki ja paluun tuki sekä työterveysyhteistyö. Miten hyvin toimintatapa toteutuu organisaatiossasi? Arvioi tilanne itsearviointityökalulla. Saat helposti selville kehittämiskohteet ja vahvuudet – ja voit tehdä konkreettisia suunnitelmia toimintatavan kehittämiseksi.</p>
 	<p>Ohje: Aloita arviointi ja klikkaa väittämään sopivaa pistemäärää. Pisteet ovat 0 (ei toteudu), 1 (toteutuu osittain) tai 2 (toteutuu kattavasti). Lopuksi, klikkaa ”katso tuloksia”. Tulossivu sisältää yhteenvedon, jossa on kokonaispisteet ja vastausten lukumäärä sekä väittämiä, joihin kannattaa kiinnittää huomiota. Voit palata tulossivulta uudelleenarviointiin tai tulostaa yhteenvedon tai tallentaa sen pdf-muodossa. Voit myös lähettää yhteenvedon Kevan asiantuntijalle yhteydenottoa varten.</p>
->>>>>>> master
   </div>
 
   <div id="questionnaire">Ladataan...</div>
@@ -274,7 +262,7 @@ var kysely =
         "partHeader": "",
         "partId": "tj",
         "questions": [
-          {
+          { 
             "questionId" : 1,
             "questionText" : "Esimiehet käyttävät toimintatapaa aktiivisesti ja oikea-aikaisesti"
           }, {
@@ -351,11 +339,7 @@ var kysely =
     "sectionHeader": "Työterveysyhteistyö",
     "sectionId": "tthcoop",
     "sectionResponceScale": [0,1,2],
-<<<<<<< HEAD
-    "sectionResponceInfo": "ei 0, osittain 1, huomioitu 2",
-=======
     "sectionResponceInfo": "0 ei toteudu, 1 toteutuu osittain, 2 toteutuu kattavasti",
->>>>>>> master
     "sectionResponceScaleInfo": "Arvio (0-2)",
     "parts": [
       {
@@ -629,11 +613,7 @@ $createResults = function() {
     $sectionContainer.appendTo($resultsContainer);
   });
 
-<<<<<<< HEAD
-  $sectionContainer.append($("<h4>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
-=======
   $sectionContainer.append($("<strong>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
->>>>>>> master
 }
 
 $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
@@ -649,18 +629,11 @@ $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
   $obj  .removeClass("progress-bar-danger progress-bar-warning progress-bar-success")
         .addClass(bar_class)
         .css("width", percentage+"%")
-<<<<<<< HEAD
-        .text(text+":"+points+"/"+max_points)
-  
-  if(percentage==0){$obj.css("color", "black")}
-  else             {$obj.css("color", "white")}
-=======
 		.css("text-align","left")
         .text(" "+text+":"+points+"/"+max_points)
   
   if(percentage==0){$obj.css("color", "black")}
   else             {$obj.css("color", "black")}
->>>>>>> master
   
 }
 
@@ -713,10 +686,7 @@ $updateResults = function() {
 
       //$("#results-"+section.sectionId+"-"+part.partId+"-pisteet")
       //  .css("width", pisteprosentti+"%")
-<<<<<<< HEAD
-=======
 	  //  .css("text-align","left")
->>>>>>> master
       //  .text("pisteet:"+pisteet+"/"+maxpisteet);
       
       //if(pisteet==0){$("#results-"+section.sectionId+"-"+part.partId+"-pisteet").css("color", "black")}
