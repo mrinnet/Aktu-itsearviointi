@@ -568,9 +568,10 @@ $createResults = function() {
           $("<div>", {class:"page-header"}).append(
               $("<h2>",{text: "Yhteenveto"})));
   $yhteenVetoContainer
-        .append($("<div>", {class:"col-md-12"})
-            .append($("<div>", {class:"progress", id:"progressbar-kokonaispisteet"})
-              .append($("<div>",{id:"results-progressbar-kokonaispisteet-bar", class:"progress-bar"})))
+        .append($("<div>", {class:"row"})
+			.append($("<div>", {class:"col-md-12"})
+				.append($("<div>", {class:"progress", id:"progressbar-kokonaispisteet"})
+					.append($("<div>",{id:"results-progressbar-kokonaispisteet-bar", class:"progress-bar"}))))
         );
 
   $resultsContainer.append(
@@ -630,7 +631,7 @@ $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
         .addClass(bar_class)
         .css("width", percentage+"%")
 		.css("text-align","left")
-        .text(" "+text+":"+points+"/"+max_points)
+        .text(" "+text+" "+points+"/"+max_points)
   
   if(percentage==0){$obj.css("color", "black")}
   else             {$obj.css("color", "black")}
