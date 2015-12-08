@@ -617,10 +617,11 @@ $createResults = function() {
   $sectionContainer.append($("<strong>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
 }
 
-$updateProgressBarColorWidth = function(obj_id, points, max_points, text){
+$updateProgressBarColorWidth = function(obj_id, points, max_points, text, answer_num){
   var bar_class = "";
   var percentage = Math.round(10000*points/max_points)/100;
   text = typeof text !== 'undefined' ? text : 'pisteet';
+  answer_num = typeof answer_num !== 'undefined' ? answer_num : 'virhe';
   
   if(Math.round(percentage) < 33)      {bar_class="progress-bar-danger"}
   else if(Math.round(percentage) < 66) {bar_class="progress-bar-warning"}
@@ -631,7 +632,13 @@ $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
         .addClass(bar_class)
         .css("width", percentage+"%")
 		.css("text-align","left")
-        .text(" "+text+" "+points+"/"+max_points)
+		.css("white-space", "nowrap") 
+		
+  if (answer_num != 0) {
+        $obj  .text(" "+text+" "+points+"/"+max_points)
+  } else {
+		$obj  .text("ei vastauksia osiossa")
+  }
   
   if(percentage==0){$obj.css("color", "black")}
   else             {$obj.css("color", "black")}
@@ -640,6 +647,7 @@ $updateProgressBarColorWidth = function(obj_id, points, max_points, text){
 
 $updateResults = function() {
   var kokonais_pisteet = 0;
+  var kokonais_vastausmaara = 0;
   var kokonais_max_pisteet = 0;
   $.each(kysely, function(i, section) {
       
@@ -661,6 +669,7 @@ $updateResults = function() {
         }
       });
       kokonais_pisteet += pisteet;
+	  kokonais_vastausmaara += vastausmaara;
       
       if(min_pisteet != undefined && min_pisteet != max_pisteet) {
         $poimitutkysymykset.append($("<p>",{html:"Vastasit "+min_pisteet+" seuraaviin väittämiin: "}));
@@ -680,10 +689,14 @@ $updateResults = function() {
       var maxpisteet = (part.questions.length*Math.max.apply(Math, section.sectionResponceScale))
       var pisteprosentti = Math.round(10000*pisteet/maxpisteet)/100;
       kokonais_max_pisteet += maxpisteet;
-
-      $("#results-"+section.sectionId+"-"+part.partId+"-vastausmaarapisteet").html("vastaukset "+vastausmaara+"/"+part.questions.length);
-      
-      $updateProgressBarColorWidth("results-"+section.sectionId+"-"+part.partId+"-pisteet", pisteet, maxpisteet)
+	  
+	  if(vastausmaara != 0) {
+		$("#results-"+section.sectionId+"-"+part.partId+"-vastausmaarapisteet").html("vastaukset "+vastausmaara+"/"+part.questions.length);
+	  } else {
+		$("#results-"+section.sectionId+"-"+part.partId+"-vastausmaarapisteet").html("et ole vastannut tämän osion kysymyksiin");
+	  }
+		
+      $updateProgressBarColorWidth("results-"+section.sectionId+"-"+part.partId+"-pisteet", pisteet, maxpisteet, "pisteet", vastausmaara)
 
       //$("#results-"+section.sectionId+"-"+part.partId+"-pisteet")
       //  .css("width", pisteprosentti+"%")
@@ -698,7 +711,7 @@ $updateResults = function() {
   });
   var kokonaispisteprosentti = Math.round(10000*kokonais_pisteet/kokonais_max_pisteet)/100;
   
-  $updateProgressBarColorWidth("results-progressbar-kokonaispisteet-bar", kokonais_pisteet, kokonais_max_pisteet, "kokonaispisteet")
+  $updateProgressBarColorWidth("results-progressbar-kokonaispisteet-bar", kokonais_pisteet, kokonais_max_pisteet, "kokonaispisteet", kokonais_vastausmaara)
 }
 
 
@@ -765,19 +778,19 @@ $( document ).ready(function() {
     display: block !important;
     background-color: #5cb85c !important;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#5cb85c', endColorstr='#449d44 ')" !important;
-    color: #ffffff !important;
+    color: #000000 !important;
   }
   .progress-bar-warning{
     display: block !important;
     background-color: #f0ad4e !important;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f0ad4e', endColorstr='#ec971f ')" !important;
-    color: #ffffff !important;
+    color: #000000 !important;
   }
  .progress-bar-danger{
     display: block !important;
-    background-color: #d9534f !important;
+    background-color: #d9534f !important; 
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#d9534f', endColorstr='#c9302c ')" !important;
-    color: #ffffff !important;
+    color: #000000 !important;
   }
   .progress, .progress > .progress-bar {
     display: block !important;
@@ -785,6 +798,8 @@ $( document ).ready(function() {
 
     box-shadow: inset 0 0 !important;
     -webkit-box-shadow: inset 0 0 !important;
+	
+	color: #000000 !important;
   }   
 }
 </style>
