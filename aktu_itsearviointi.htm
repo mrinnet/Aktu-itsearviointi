@@ -399,7 +399,7 @@ $printResults = function(){
 $sendEmail = function(){
   event.preventDefault();
   //alert("Got ya!");
-  var email = 'kaari@keva.fi';
+  var email = 'tyoelamapalvelut@keva.fi';
   var subject = 'Aktu-itsearviointi';
   var emailBody = 'Kirjoita oma viestisi, yhteystietosi ja mahdolliset kysymyksesi tämän viivan yläpuolelle\n-------------------------------------------------------------------------\n\n';
   
@@ -614,7 +614,7 @@ $createResults = function() {
     $sectionContainer.appendTo($resultsContainer);
   });
 
-  $sectionContainer.append($("<strong>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/kaari' target='_blank'>www.keva.fi/kaari</a>."}))
+  $sectionContainer.append($("<strong>", {html:"<br>Lisätietoa Aktiivisen tuen toimintatavasta ja sen kehittämisestä on Kevan sivuilla <a href='http://www.keva.fi/' target='_blank'>www.keva.fi/kaari</a>."}))
 }
 
 $updateProgressBarColorWidth = function(obj_id, points, max_points, text, answer_num){
